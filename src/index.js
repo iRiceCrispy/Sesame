@@ -7,6 +7,8 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.commands = new Collection();
 
+require('./config/database');
+
 commandHandler(client);
 eventHandler(client);
 

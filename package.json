@@ -20,7 +20,8 @@
   "homepage": "https://github.com/iRiceCrispy/discordjs-starter#readme",
   "dependencies": {
     "@discordjs/rest": "^1.0.0",
-    "discord.js": "^14.0.3"
+    "discord.js": "^14.0.3",
+    "mongoose": "^6.5.0"
   },
   "devDependencies": {
     "dotenv": "^16.0.1",
