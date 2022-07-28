@@ -8,6 +8,7 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.commands = new Collection();
 
 require('./config/database');
+require('./models');
 
 commandHandler(client);
 eventHandler(client);
