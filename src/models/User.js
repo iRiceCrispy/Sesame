@@ -14,4 +14,10 @@ const userSchema = new mongoose.Schema({
   versionKey: false,
 });
 
+userSchema.statics.findById = async function findById(id) {
+  const user = await this.findOne({ id });
+
+  return user;
+};
+
 module.exports = mongoose.model('User', userSchema);
