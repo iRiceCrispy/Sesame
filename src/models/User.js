@@ -20,4 +20,19 @@ userSchema.statics.findById = async function findById(id) {
   return user;
 };
 
+userSchema.methods.addBalance = async function addBalance(amount) {
+  this.balance += amount;
+  await this.save();
+};
+
+userSchema.methods.subtractBalance = async function subtractBalance(amount) {
+  this.balance -= amount;
+  await this.save();
+};
+
+userSchema.methods.transfer = async function transfer(target, amount) {
+  await this.subtractBalance(amount);
+  await target.addBalance(amount);
+};
+
 module.exports = mongoose.model('User', userSchema);
