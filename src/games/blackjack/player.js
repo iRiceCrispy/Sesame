@@ -4,12 +4,20 @@ class Player extends BasePlayer {
   constructor(id) {
     super();
     this.id = id;
-    this.stood = false;
-    this.turnEnded = this.busted || this.stood;
+    this.standing = false;
+    this.hasHit = false;
+  }
+
+  get turnEnded() {
+    return this.busted || this.standing;
   }
 
   stand() {
-    this.stood = true;
+    this.standing = true;
+  }
+
+  hit() {
+    this.hasHit = true;
   }
 }
 

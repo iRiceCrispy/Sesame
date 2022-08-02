@@ -35,14 +35,14 @@ class BasePlayer {
   }
 
   get hasBlackjack() {
-    const card1 = this.cards[0].rank;
-    const card2 = this.cards[1].rank;
+    const card1 = this.hand[0].rank;
+    const card2 = this.hand[1].rank;
 
     return (card1 === 'A' && ['10', 'J', 'Q', 'K'].includes(card2)) || (card2 === 'A' && ['10', 'J', 'Q', 'K'].includes(card1));
   }
 
   draw(deck, num = 1) {
-    this.cards.push(...deck.deal(num));
+    this.hand.push(...deck.deal(num));
 
     return this;
   }

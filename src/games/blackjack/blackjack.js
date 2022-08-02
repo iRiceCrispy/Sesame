@@ -3,20 +3,28 @@ const Player = require('./player');
 const Deck = require('../util/deck');
 
 class Blackjack {
-  constructor(playerIds) {
+  constructor() {
     this.deck = new Deck();
     this.dealer = new Dealer();
-    this.players = playerIds.map(id => new Player(id));
+    this.players = {};
     this.naturals = [];
     this.winners = [];
     this.losers = [];
     this.ties = [];
-    this.gameover = this.players.every(player => player.turnEnded);
+  }
+
+  get gameover() {
+    console.log(Object.values(this.players));
+    return Object.values(this.players).every(player => player.turnEnded);
+  }
+
+  addPlayer(id) {
+    this.players[id] = new Player(id);
   }
 
   start() {
     for (let i = 0; i < 2; i++) {
-      this.players.forEach((player) => {
+      Object.values(this.players).forEach((player) => {
         player.draw(this.deck);
       });
 
@@ -30,7 +38,7 @@ class Blackjack {
     }
 
     if (this.dealer.hasBlackjack) {
-      this.players.forEach((player) => {
+      Object.values(this.players).forEach((player) => {
         if (player.hasBlackjack) {
           this.ties.push(player);
         }
@@ -38,7 +46,7 @@ class Blackjack {
       });
     }
     else if (this.dealer.busted) {
-      this.players.forEach((player) => {
+      Object.values(this.players).forEach((player) => {
         if (player.hasBlackjack) {
           this.naturals.push(player);
         }
@@ -49,7 +57,7 @@ class Blackjack {
       });
     }
     else {
-      this.players.forEach((player) => {
+      Object.values(this.players).forEach((player) => {
         if (player.hasBlackjack) {
           this.naturals.push(player);
         }
